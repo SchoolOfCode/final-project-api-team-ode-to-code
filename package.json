@@ -5,7 +5,13 @@
   "type": "module",
   "scripts": {
     "start": "node ./bin/www.js",
-    "db:createusers": "node ./db/scripts/users/createTable.js"
+    "dev" : "nodemon -r dotenv/config ./bin/www.js",
+    "dbcreatecitiestable":"node -r dotenv/config ./db/scripts/cities/createTable.js",
+    "dbdeletecitiestable":"node -r dotenv/config ./db/scripts/cities/deleteTable.js",
+    "dbpopulatecitiestable":"node -r dotenv/config ./db/scripts/cities/populateTable.js",
+    "dbcreatecountriestable":"node -r dotenv/config ./db/scripts/countries/createTable.js",
+    "dbdeletecountriestable":"node -r dotenv/config ./db/scripts/countries/deleteTable.js",
+    "dbpopulatecountriestable":"node -r dotenv/config ./db/scripts/countries/populateTable.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
