@@ -1,6 +1,6 @@
-import query from "../../connection.js";
+import query from '../../connection.js';
 
-const deleteTableString = "DELETE FROM cities";
+const deleteTableString = 'DROP TABLE cities';
 
 async function deleteTable() {
   const res = await query(deleteTableString);
