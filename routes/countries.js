@@ -1,5 +1,5 @@
 import express from "express";
-import {getAllCountries} from '../models/countries.js';
+import {getAllCountries,getCountryName} from '../models/countries.js';
 const router = express.Router();
 
 
@@ -11,9 +11,17 @@ const router = express.Router();
 
 
 router.get('/', async function (req, res) {
+  const {name} = req.query
+
+if (name){
+  const reqName = await getCountryName(name);
+  return res.json({
+    message:'ok',
+    payload:reqName
+  })
+}
 
   const allCountries = await getAllCountries();
-  console.log(allCountries)
    res.json({ 
     message:'ok',
     payload:allCountries 
