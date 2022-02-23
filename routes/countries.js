@@ -62,9 +62,7 @@ router.put('/', async function (req, res) {
 
 // PATCH request needs body formatted like this:
 
-// {"data":""}
-
-// also change the column in models to specify which column to update
+// {"column":"","data":""}
 
 router.patch('/', async function (req, res) {
   const { name } = req.query
