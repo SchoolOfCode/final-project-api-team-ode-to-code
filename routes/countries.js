@@ -66,7 +66,7 @@ router.put('/', async function (req, res) {
 
 router.patch('/', async function (req, res) {
   const { name } = req.query
-  const body = req.body.data;
+  const body = req.body;
   const result = await patchCountry(body, name);
   return res.json({
     message: 'ok',

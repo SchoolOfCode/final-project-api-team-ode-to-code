@@ -26,7 +26,7 @@ export async function updateCity(cityData, cityName) {
 // patch request needs to contain {"column":"", "data":""} to specify which column in the database to update
 
 export async function patchCity(cityData, cityName) {
-  const data = await query(`UPDATE cities SET ${cityData.column} = $1 WHERE city_name=$3 RETURNING *`,[cityData.column, cityData.data, cityName]);
+  const data = await query(`UPDATE cities SET ${cityData.column} = $1 WHERE city_name=$2 RETURNING *`,[cityData.data, cityName]);
   return data.rows;
 }
 
