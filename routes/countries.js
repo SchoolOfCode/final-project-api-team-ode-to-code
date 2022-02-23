@@ -1,5 +1,5 @@
 import express from "express";
-import {getAllCountries,getCountryName} from '../models/countries.js';
+import {getAllCountries,getCountryName, addCountry} from '../models/countries.js';
 const router = express.Router();
 
 
@@ -27,4 +27,15 @@ if (name){
     payload:allCountries 
 });
 });
+
+router.post('/', async function (req, res) {
+  const newCountry = req.body;
+  const result = await addCountry(newCountry);
+  return res.json({
+    message: 'ok',
+    payload: result,
+  });
+});
+
+
 export default router;

@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import {getAllCities, getCityName} from '../models/cities.js'
+import { getAllCities, getCityName, addCity } from '../models/cities.js';
 
 /* GET users listing. */
 // router.get('/', function (req, res, next) {
@@ -8,24 +8,30 @@ import {getAllCities, getCityName} from '../models/cities.js'
 // });
 
 router.get('/', async function (req, res) {
-const {name} = req.query
+  const { name } = req.query;
 
-if (name){
-  const reqName = await getCityName(name);
-  return res.json({
-    message:'ok',
-    payload:reqName
-  })
-}
+  if (name) {
+    const reqName = await getCityName(name);
+    return res.json({
+      message: 'ok',
+      payload: reqName,
+    });
+  }
   const allCities = await getAllCities();
-  console.log(allCities)
-   res.json({ 
-    message:'ok',
-    payload:allCities 
+  console.log(allCities);
+  res.json({
+    message: 'ok',
+    payload: allCities,
+  });
 });
+
+router.post('/', async function (req, res) {
+  const newCity = req.body;
+  const result = await addCity(newCity);
+  return res.json({
+    message: 'ok',
+    payload: result,
+  });
 });
-
-
-
 
 export default router;
