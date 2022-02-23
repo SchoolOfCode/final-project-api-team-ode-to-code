@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { getAllCities, getCityName, addCity } from '../models/cities.js';
+import { getAllCities, getCityName, addCity, updateCity, patchCity} from '../models/cities.js';
 
 /* GET users listing. */
 // router.get('/', function (req, res, next) {
@@ -33,5 +33,46 @@ router.post('/', async function (req, res) {
     payload: result,
   });
 });
+
+
+// all of city data needs to be included in body in format below for PUT request
+
+// { city_name: "",
+//   country: "",
+//   continent: "",
+//   rating: ,
+//   image: "",
+//   city_description: "", 
+//   city_attractions: [""],
+//   great_for: [""],
+//   tags: [""],
+// },
+
+router.put('/', async function (req, res) {
+  const { name } = req.query
+  const body = req.body;
+  const result = await updateCity(body, name);
+  return res.json({
+    message: 'ok',
+    payload: result,
+  });
+});
+
+// PATCH request needs body formatted like this:
+
+// {"data":""}
+
+// also change the column in models to specify which column to update
+
+router.patch('/', async function (req, res) {
+  const { name } = req.query
+  const body = req.body.data;
+  const result = await patchCity(body, name);
+  return res.json({
+    message: 'ok',
+    payload: result,
+  });
+});
+
 
 export default router;

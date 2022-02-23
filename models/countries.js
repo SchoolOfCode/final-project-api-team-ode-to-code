@@ -26,3 +26,20 @@ export async function addCountry(newCountry) {
   );
   return data.rows;
 }
+
+
+
+//updates entire row of particular country
+
+export async function updateCountry(countryData, countryName) {
+  const data = await query(`UPDATE countries SET (country, continent, image, country_description, cities) = ($1,$2,$3,$4,$5) WHERE country=$6 RETURNING *`,[countryData.country, countryData.continent,countryData.image,countryData.country_description,countryData.cities,countryName]);
+  return data.rows;
+}
+
+// Need to change the word after SET to dictate which column is being updated
+
+export async function patchCountry(countryData, countryName) {
+  const data = await query(`UPDATE countries SET image = $1 WHERE country=$2 RETURNING *`,[countryData, countryName]);
+  return data.rows;
+}
+
