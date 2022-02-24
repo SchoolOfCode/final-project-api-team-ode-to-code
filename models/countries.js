@@ -36,10 +36,10 @@ export async function updateCountry(countryData, countryName) {
   return data.rows;
 }
 
-// Need to change the word after SET to dictate which column is being updated
+// patch request needs to contain {"column":"", "data":""} to specify which column in the database to update
 
 export async function patchCountry(countryData, countryName) {
-  const data = await query(`UPDATE countries SET image = $1 WHERE country=$2 RETURNING *`,[countryData, countryName]);
+  const data = await query(`UPDATE countries SET ${countryData.column} = $1 WHERE country=$2 RETURNING *`,[countryData.data, countryName]);
   return data.rows;
 }
 
