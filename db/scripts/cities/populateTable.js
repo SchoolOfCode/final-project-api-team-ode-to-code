@@ -12,9 +12,11 @@ async function populateCitiesTable() {
     const city_attractions = citiesData[i].city_attractions;
     const great_for = citiesData[i].great_for;
     const tags = citiesData[i].tags;
+    const budget = citiesData[i].budget;
+    const holiday_type = citiesData[i].holiday_type;
     const res = await query(
-      `INSERT INTO cities (city_name, country, continent, rating, image, city_description, city_attractions, great_for, tags) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
-      [city_name, country, continent, rating, image, city_description, city_attractions, great_for, tags]
+      `INSERT INTO cities (city_name, country, continent, rating, image, city_description, city_attractions, great_for, tags, budget, holiday_type) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
+      [city_name, country, continent, rating, image, city_description, city_attractions, great_for, tags,budget,holiday_type]
     );
    }
 }

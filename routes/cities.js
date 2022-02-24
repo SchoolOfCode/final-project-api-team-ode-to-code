@@ -46,6 +46,8 @@ router.post('/', async function (req, res) {
 //   city_attractions: [""],
 //   great_for: [""],
 //   tags: [""],
+//   budget:"",
+//   holiday_type:""
 // },
 
 router.put('/', async function (req, res) {
