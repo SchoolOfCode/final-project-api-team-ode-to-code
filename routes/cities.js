@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { getAllCities, getCityName, addCity, updateCity, patchCity} from '../models/cities.js';
+import { getAllCities, getCityName, addCity, updateCity, patchCity,deleteCityByName} from '../models/cities.js';
 
 /* GET users listing. */
 // router.get('/', function (req, res, next) {
@@ -74,5 +74,13 @@ router.patch('/', async function (req, res) {
   });
 });
 
+router.delete("/", async function (req, res) {
+  const {name} = req.query
+  let result = await deleteCityByName(name);
+  res.json({
+    success: true,
+    payload: result,
+  });
+});
 
 export default router;

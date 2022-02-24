@@ -1,5 +1,5 @@
 import express from "express";
-import {getAllCountries,getCountryName, addCountry, updateCountry, patchCountry} from '../models/countries.js';
+import {getAllCountries,getCountryName, addCountry, updateCountry, patchCountry,deleteCountryByName} from '../models/countries.js';
 const router = express.Router();
 
 
@@ -70,6 +70,16 @@ router.patch('/', async function (req, res) {
   const result = await patchCountry(body, name);
   return res.json({
     message: 'ok',
+    payload: result,
+  });
+});
+
+
+router.delete("/", async function (req, res) {
+  const {name} = req.query
+  let result = await deleteCountryByName(name);
+  res.json({
+    success: true,
     payload: result,
   });
 });

@@ -43,3 +43,7 @@ export async function patchCountry(countryData, countryName) {
   return data.rows;
 }
 
+export async function deleteCountryByName( countryName) {
+  const data = await query(`DELETE FROM countries WHERE country=$1 RETURNING *`,[countryName]);
+  return data.rows;
+}

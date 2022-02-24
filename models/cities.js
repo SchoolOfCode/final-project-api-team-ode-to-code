@@ -30,3 +30,7 @@ export async function patchCity(cityData, cityName) {
   return data.rows;
 }
 
+export async function deleteCityByName( cityName) {
+  const data = await query(`DELETE FROM cities WHERE city_name=$1 RETURNING *`,[cityName]);
+  return data.rows;
+}
