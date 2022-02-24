@@ -5,13 +5,20 @@
   "type": "module",
   "scripts": {
     "start": "node ./bin/www.js",
-    "dev" : "nodemon -r dotenv/config ./bin/www.js",
-    "dbcreatecitiestable":"node -r dotenv/config ./db/scripts/cities/createTable.js",
-    "dbdeletecitiestable":"node -r dotenv/config ./db/scripts/cities/deleteTable.js",
-    "dbpopulatecitiestable":"node -r dotenv/config ./db/scripts/cities/populateTable.js",
-    "dbcreatecountriestable":"node -r dotenv/config ./db/scripts/countries/createTable.js",
-    "dbdeletecountriestable":"node -r dotenv/config ./db/scripts/countries/deleteTable.js",
-    "dbpopulatecountriestable":"node -r dotenv/config ./db/scripts/countries/populateTable.js"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --setupFiles dotenv/config",
+    "dev": "nodemon -r dotenv/config ./bin/www.js",
+    "dbcreatecitiestable": "node -r dotenv/config ./db/scripts/cities/createTable.js",
+    "dbdeletecitiestable": "node -r dotenv/config ./db/scripts/cities/deleteTable.js",
+    "dbpopulatecitiestable": "node -r dotenv/config ./db/scripts/cities/populateTable.js",
+    "dbcreatecountriestable": "node -r dotenv/config ./db/scripts/countries/createTable.js",
+    "dbdeletecountriestable": "node -r dotenv/config ./db/scripts/countries/deleteTable.js",
+    "dbpopulatecountriestable": "node -r dotenv/config ./db/scripts/countries/populateTable.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -22,6 +29,7 @@
     "pg": "^8.7.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
