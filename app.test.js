@@ -2,33 +2,40 @@ import request from 'supertest';
 import app from './app.js';
 import {getCityName} from './models/cities.js';
 import {getAllCountries, getCountryName} from './models/countries.js';
+import {beforeEach, afterAll} from "@jest/globals";
+import {pool} from "./db/connection.js";
 
 
 beforeEach(expect.hasAssertions)
 
-describe("/cities", () => {
+afterAll(async()=>{
+  await pool.end()
+})
 
-    test("should respond with a 200 status code", async () => {
+
+describe("check /cities route", () => {
+
+    test("GET request should respond with a 200 status code", async () => {
       const response = await request(app).get("/")
       expect(response.statusCode).toBe(200)
     })
 
-    test("should respond with first city_name in the body", async () => {
+    test("GET request should respond with first city_name in the body", async () => {
         const response = await request(app).get("/cities") 
         expect(response.body.payload[0].budget).toBe('££')
       })
 
-      test("should respond with function defined", async () => {
+      test("GET request should respond with function defined", async () => {
         const response = await request(app).get("/cities")
         expect(getCityName).toBeDefined()
       })
 
-      test("should respond with a GET status", async () => {
+      test("GET request should respond with a GET status", async () => {
         const response = await request(app).get("/cities")
         expect(response.req.method).toBe('GET')
       })
 
-      test("11111", async () => {
+      test("GET request to have a header in the response", async () => {
         const response = await request(app).get("/cities")
         expect(response.header).toStrictEqual(expect.any(Object))
       })
@@ -40,26 +47,26 @@ describe("/cities", () => {
 
 ///////
 
-describe("/countries", () => {
+describe("check /countries route", () => {
 
-    test("should respond with a 200 status code", async () => {
+    test("GET request should respond with a 200 status code", async () => {
       const response = await request(app).get("/countries")
       expect(response.statusCode).toBe(200)
     })
 
-    test("should not respond with a 400 status code", async () => {
+    test("GET request should not respond with a 400 status code", async () => {
         const response = await request(app).get("/countries")
         expect(response.status).not.toBe(400)
       })
 
 
-      test("should show the function defined", async () => {
+      test("GET request should show the function defined", async () => {
         const response = await request(app).get("/countries")
         expect(getAllCountries).toBeDefined()
       })
 
 
-      test('should return something from the function', async () => {
+      test('GET request should return something from the function', async () => {
         const response = await request(app).get("/countries")
         expect(getCountryName).toBeTruthy();
       });
