@@ -23,7 +23,7 @@ describe("Test the root path", () => {
       describe("Test the root path", () => {
         test("It should response the GET method", async () => {
             spyQuery.mockResolvedValueOnce()
-          const response = await request(app).get("/cities");
+          const response = await request(app).get("/");
           expect(response.statusCode).toBe(200);
         });
       });

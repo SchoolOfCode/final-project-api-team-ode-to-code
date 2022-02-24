@@ -1,7 +1,7 @@
 import express from 'express';
-const router = express.Router();
 import { getAllCities, getCityName, addCity, updateCity, patchCity,deleteCityByName} from '../models/cities.js';
 
+const router = express.Router();
 /* GET users listing. */
 // router.get('/', function (req, res, next) {
 //   res.json({ message: 'I wish we had some information to give you ☹️' });
