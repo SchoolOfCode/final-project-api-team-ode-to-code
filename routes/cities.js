@@ -1,7 +1,14 @@
 import express from 'express';
-const router = express.Router();
-import { getAllCities, getCityName, addCity, updateCity, patchCity,deleteCityByName} from '../models/cities.js';
+import {
+  getAllCities,
+  getCityName,
+  addCity,
+  updateCity,
+  patchCity,
+  deleteCityByName,
+} from '../models/cities.js';
 
+const router = express.Router();
 /* GET users listing. */
 // router.get('/', function (req, res, next) {
 //   res.json({ message: 'I wish we had some information to give you ☹️' });
@@ -18,7 +25,6 @@ router.get('/', async function (req, res) {
     });
   }
   const allCities = await getAllCities();
-  console.log(allCities);
   res.json({
     message: 'ok',
     payload: allCities,
@@ -34,7 +40,6 @@ router.post('/', async function (req, res) {
   });
 });
 
-
 // all of city data needs to be included in body in format below for PUT request
 
 // { city_name: "",
@@ -42,7 +47,7 @@ router.post('/', async function (req, res) {
 //   continent: "",
 //   rating: ,
 //   image: "",
-//   city_description: "", 
+//   city_description: "",
 //   city_attractions: [""],
 //   great_for: [""],
 //   tags: [""],
@@ -51,7 +56,7 @@ router.post('/', async function (req, res) {
 // },
 
 router.put('/', async function (req, res) {
-  const { name } = req.query
+  const { name } = req.query;
   const body = req.body;
   const result = await updateCity(body, name);
   return res.json({
@@ -65,7 +70,7 @@ router.put('/', async function (req, res) {
 // {"column":"","data":""}
 
 router.patch('/', async function (req, res) {
-  const { name } = req.query
+  const { name } = req.query;
   const body = req.body;
   const result = await patchCity(body, name);
   return res.json({
@@ -74,8 +79,8 @@ router.patch('/', async function (req, res) {
   });
 });
 
-router.delete("/", async function (req, res) {
-  const {name} = req.query
+router.delete('/', async function (req, res) {
+  const { name } = req.query;
   let result = await deleteCityByName(name);
   res.json({
     success: true,
