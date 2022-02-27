@@ -47,6 +47,7 @@ router.post('/', async function (req, res) {
 //   continent: "",
 //   rating: ,
 //   image: "",
+//   image2: "",
 //   city_description: "",
 //   city_attractions: [""],
 //   great_for: [""],

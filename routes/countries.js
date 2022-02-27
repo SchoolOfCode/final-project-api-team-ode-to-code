@@ -45,6 +45,7 @@ router.post('/', async function (req, res) {
 //   country: "",
 //   continent: "",
 //   image: "",
+//   image2: "",
 //   country_description: "",
 //   cities: [""],
 // },

@@ -11,7 +11,7 @@ export async function getCityName(name) {
 }
 
 export async function addCity(newCity) {
-  const data = await query(`INSERT INTO cities (city_name, country, continent, rating, image, city_description, city_attractions, great_for, tags,budget,holiday_type) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,[newCity.city_name, newCity.country, newCity.continent, newCity.rating, newCity.image, newCity.city_description, newCity.city_attractions, newCity.great_for, newCity.tags,newCity.budget,newCity.holiday_type]);
+  const data = await query(`INSERT INTO cities (city_name, country, continent, rating, image, image2, city_description, city_attractions, great_for, tags,budget,holiday_type) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,[newCity.city_name, newCity.country, newCity.continent, newCity.rating, newCity.image, newCity.image2, newCity.city_description, newCity.city_attractions, newCity.great_for, newCity.tags,newCity.budget,newCity.holiday_type]);
   return data.rows;
 }
 
@@ -19,7 +19,7 @@ export async function addCity(newCity) {
 //updates entire row of particular city
 
 export async function updateCity(cityData, cityName) {
-  const data = await query(`UPDATE cities SET (city_name, country, continent, rating, image, city_description, city_attractions, great_for, tags,budget, holiday_type) = ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) WHERE city_name=$12 RETURNING *`,[cityData.city_name, cityData.country, cityData.continent, cityData.rating, cityData.image, cityData.city_description, cityData.city_attractions, cityData.great_for, cityData.tags,cityData.budget,cityData.holiday_type, cityName]);
+  const data = await query(`UPDATE cities SET (city_name, country, continent, rating, image, image2, city_description, city_attractions, great_for, tags,budget, holiday_type) = ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) WHERE city_name=$13 RETURNING *`,[cityData.city_name, cityData.country, cityData.continent, cityData.rating, cityData.image, cityData.image2, cityData.city_description, cityData.city_attractions, cityData.great_for, cityData.tags,cityData.budget,cityData.holiday_type, cityName]);
   return data.rows;
 }
 
