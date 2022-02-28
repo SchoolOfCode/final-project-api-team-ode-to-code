@@ -1,3 +1,4 @@
+import e from 'express';
 import query from '../db/connection.js';
 
 export async function getAllCountries() {
@@ -39,9 +40,16 @@ export async function updateCountry(countryData, countryName) {
 
 // patch request needs to contain {"column":"", "data":""} to specify which column in the database to update
 
+// used regex data validation to make sure column name is letters/underscore only and prevent any SQL injection
+
 export async function patchCountry(countryData, countryName) {
+  const regex = /^[a-zA-Z_]+$/
+  if (regex.test(cityData.column)){
   const data = await query(`UPDATE countries SET ${countryData.column} = $1 WHERE country=$2 RETURNING *`,[countryData.data, countryName]);
-  return data.rows;
+  return data.rows;}
+  else {
+    throw e;
+  }
 }
 
 export async function deleteCountryByName( countryName) {

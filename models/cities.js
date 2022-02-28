@@ -1,3 +1,4 @@
+import e from "express";
 import  query  from "../db/connection.js";
 
 export async function getAllCities() {
@@ -25,9 +26,17 @@ export async function updateCity(cityData, cityName) {
 
 // patch request needs to contain {"column":"", "data":""} to specify which column in the database to update
 
+// used regex data validation to make sure column name is letters/underscore only and prevent any SQL injection
+
 export async function patchCity(cityData, cityName) {
-  const data = await query(`UPDATE cities SET ${cityData.column} = $1 WHERE city_name=$2 RETURNING *`,[cityData.data, cityName]);
-  return data.rows;
+  const regex = /^[a-zA-Z_]+$/
+  if (regex.test(cityData.column)) {
+    const data = await query(`UPDATE cities SET ${cityData.column} = $1 WHERE city_name=$2 RETURNING *`,[cityData.data, cityName]);
+    return data.rows
+}
+else {
+  throw e;
+};
 }
 
 export async function deleteCityByName( cityName) {
