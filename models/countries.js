@@ -44,7 +44,7 @@ export async function updateCountry(countryData, countryName) {
 
 export async function patchCountry(countryData, countryName) {
   const regex = /^[a-zA-Z_]+$/
-  if (regex.test(cityData.column)){
+  if (regex.test(countryData.column)){
   const data = await query(`UPDATE countries SET ${countryData.column} = $1 WHERE country=$2 RETURNING *`,[countryData.data, countryName]);
   return data.rows;}
   else {
