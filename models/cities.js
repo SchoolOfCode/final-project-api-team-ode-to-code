@@ -12,7 +12,7 @@ export async function getCityName(name) {
 }
 
 export async function addCity(newCity) {
-  const data = await query(`INSERT INTO cities (city_name, country, continent, rating, image, image2, city_description, city_attractions, great_for, tags,budget,holiday_type) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,[newCity.city_name, newCity.country, newCity.continent, newCity.rating, newCity.image, newCity.image2, newCity.city_description, newCity.city_attractions, newCity.great_for, newCity.tags,newCity.budget,newCity.holiday_type]);
+  const data = await query(`INSERT INTO cities (city_name, country, continent, rating, image, image2, city_description, city_attractions, great_for, tags,budget,holiday_type) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *`,[newCity.city_name, newCity.country, newCity.continent, newCity.rating, newCity.image, newCity.image2, newCity.city_description, newCity.city_attractions, newCity.great_for, newCity.tags,newCity.budget,newCity.holiday_type]);
   return data.rows;
 }
 

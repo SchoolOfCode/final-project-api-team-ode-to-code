@@ -16,7 +16,7 @@ export async function getCountryName(name) {
 
 export async function addCountry(newCountry) {
   const data = await query(
-    `INSERT INTO countries (country, continent, image, image2, country_description, cities) VALUES($1,$2,$3,$4,$5,$6)`,
+    `INSERT INTO countries (country, continent, image, image2, country_description, cities) VALUES($1,$2,$3,$4,$5,$6) RETURNING *`,
     [
       newCountry.country,
       newCountry.continent,
@@ -28,7 +28,6 @@ export async function addCountry(newCountry) {
   );
   return data.rows;
 }
-
 
 
 //updates entire row of particular country
