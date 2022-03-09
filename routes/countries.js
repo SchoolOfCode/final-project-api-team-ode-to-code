@@ -28,6 +28,12 @@ if (name){
 });
 });
 
+
+// all of country data needs to be included in body in format below for POST or PUT request
+
+// {"country":"","continent":"","image":"","image2":"","country_description":"","cities":[],}
+
+
 router.post('/', async function (req, res) {
   const newCountry = req.body;
   const result = await addCountry(newCountry);
@@ -37,18 +43,6 @@ router.post('/', async function (req, res) {
   });
 });
 
-
-
-// all of country data needs to be included in body in format below for PUT request
-
-// {
-//   country: "",
-//   continent: "",
-//   image: "",
-//   image2: "",
-//   country_description: "",
-//   cities: [""],
-// },
 
 router.put('/', async function (req, res) {
   const { name } = req.query

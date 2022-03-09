@@ -31,6 +31,11 @@ router.get('/', async function (req, res) {
   });
 });
 
+
+// all of city data needs to be included in body in JSON format below for PUT or POST request
+
+// {"city_name":"","country":"","continent":"","rating": ,"image": "","image2": "","city_description":"","city_attractions":[],"great_for": [],"tags": [],"budget": "","holiday_type":""}
+
 router.post('/', async function (req, res) {
   const newCity = req.body;
   const result = await addCity(newCity);
@@ -39,22 +44,6 @@ router.post('/', async function (req, res) {
     payload: result,
   });
 });
-
-// all of city data needs to be included in body in format below for PUT request
-
-// { city_name: "",
-//   country: "",
-//   continent: "",
-//   rating: ,
-//   image: "",
-//   image2: "",
-//   city_description: "",
-//   city_attractions: [""],
-//   great_for: [""],
-//   tags: [""],
-//   budget:"",
-//   holiday_type:""
-// },
 
 router.put('/', async function (req, res) {
   const { name } = req.query;
