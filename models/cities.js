@@ -29,7 +29,7 @@ export async function updateCity(cityData, cityName) {
 // used regex data validation to make sure column name is letters/underscore only and prevent any SQL injection
 
 export async function patchCity(cityData, cityName) {
-  const regex = /^[a-zA-Z_]+$/
+  const regex = /^[a-zA-Z_0-9]+$/
   if (regex.test(cityData.column)) {
     const data = await query(`UPDATE cities SET ${cityData.column} = $1 WHERE city_name=$2 RETURNING *`,[cityData.data, cityName]);
     return data.rows
